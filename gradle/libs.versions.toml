@@ -1,0 +1,167 @@
+[versions]
+agp = "8.6.1"
+kotlin = "2.0.21"
+coreKtx = "1.16.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.9.0"
+activityCompose = "1.10.1"
+composeBom = "2025.05.00"
+
+#Font
+font = "1.8.1"
+
+#ViewModel
+viewModel = "2.9.0"
+
+#Koin
+koin = "4.0.0"
+
+#Retrofit
+retrofit = "2.11.0"
+
+#DataStore
+datastore = "1.1.6"
+
+#Coroutines
+coroutines = "1.9.0"
+
+#Okhttp3
+okhttp = "4.12.0"
+
+#Lottie
+lottie = "6.6.0"
+
+#Serialization
+serialization = "1.7.3"
+
+#PagingCompose
+pagingCompose = "3.3.6"
+
+#NavigationCompose
+navigationCompose = "2.9.0"
+
+#SplashScreen
+splashscreen = "1.0.1"
+
+#Coil Image
+coil = "2.7.0"
+
+#Play Service Location
+playServiceLocation= "21.3.0"
+
+#Accompanist Permission
+accompanist = "0.36.0"
+
+#Midtrans
+midtrans = "2.0.0-SANDBOX"
+
+#Room
+room = "2.7.1"
+ksp = "2.0.20-1.0.24"
+googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
+playServicesMaps = "19.2.0"
+appcompat = "1.7.0"
+constraintlayout = "2.2.1"
+
+#Map Composable
+mapComposable = "6.1.0"
+
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-material-icons-extended = {module = "androidx.compose.material:material-icons-extended"}
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+#Map Composable
+map-composable = {group ="com.google.maps.android", name ="maps-compose", version.ref ="mapComposable"}
+#Font Family
+font-style = {group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "font"}
+
+#ViewModel
+androidx-viewmodel = {group = "androidx.lifecycle", "name" = "lifecycle-viewmodel-compose", version.ref = "viewModel"}
+
+#Koin
+koin-android = {group = "io.insert-koin", name = "koin-android", version.ref = "koin"}
+koin-core = {group = "io.insert-koin", name = "koin-core", version.ref = "koin"}
+
+#Retrofit
+retrofit-android = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+retrofit-converter = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
+
+#Data store
+data-store = {group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore"}
+
+#Coroutines
+corotuines-android = {group ="org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines"}
+corotuines-core = {group ="org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines"}
+
+#Okhttp3
+okhttp3-logging = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp"}
+
+#Lottie
+lottie-animation = {group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie"}
+
+#Serialization Json
+kotlinx-serialization-json = {group = "org.jetbrains.kotlinx", name ="kotlinx-serialization-json", version.ref = "serialization"}
+
+#Paging
+androidx-paging-compose = { group="androidx.paging", name="paging-compose", version.ref="pagingCompose"}
+
+#Navigation Compose
+navagiation-compose = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose"}
+
+#SplashScreen
+splash-api = {group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen"}
+
+#Coil
+coil-compose = {group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
+
+#ServiceLocation
+service-location = {group = "com.google.android.gms", name = "play-services-location", version.ref = "playServiceLocation"}
+
+#accompanist-permissions
+accompanist-permissions = {group ="com.google.accompanist", name= "accompanist-permissions", version.ref="accompanist"}
+
+#Midtrans
+midtrans-android = {group = "com.midtrans", name = "uikit", version.ref = "midtrans"}
+
+#Room
+room-runtime-android = {group = "androidx.room", name = "room-runtime", version.ref = "room"}
+room-runtime-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "room"}
+room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "room"}
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+#Compose Compiler
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin"}
+
+
+#KSP Plugin
+ksp-plugin = {id = "com.google.devtools.ksp", version.ref = "ksp"}
+
+#Serialization Plugin
+kotlin-serialization = {id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
+google-android-libraries-mapsplatform-secrets-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "googleAndroidLibrariesMapsplatformSecretsGradlePlugin" }
+
+
+
+
