@@ -13,6 +13,8 @@
         <item name="postSplashScreenTheme">@style/Theme.Consultation</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/parentColor</item>
+        <item name="windowActionBar">false</item> <!-- Tambahkan ini -->
+        <item name="windowNoTitle">false</item> <!-- Tambahkan ini -->
     </style>
 </resources>

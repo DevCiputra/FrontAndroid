@@ -85,6 +85,8 @@ class DataStoreManager(private val context: Context) {
 				username = preferences[USER_NAME] ?: "",
 				whatsapp = preferences[USER_WHATSAPP] ?: "",
 				profilePicture = preferences[USER_PROFILE_PICTURE] ?: "",
+				emailVerification = "",
+				deletedAt = ""
 			)
 		}
 	

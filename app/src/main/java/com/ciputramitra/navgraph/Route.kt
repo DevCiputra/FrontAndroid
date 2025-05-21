@@ -8,65 +8,19 @@ object Login
 @Serializable
 object Register
 
-@Serializable
-object Authentication
 
 @Serializable
 object Home
 
-
+@Serializable
+object VerifyEmailRoute
 
 @Serializable
-object ConsultationOnline
-
-@Serializable
-data class DoctorAll(
-	val categoryPolyclinicID : Int,
-	val nameCategoryPolyclinic: String,
-)
-
-
-@Serializable
-data class DoctorDetailArgs(
-	val doctorID: Int
+data class VerifyOtpArgs(
+	val email : String,
 )
 
 @Serializable
-object Cart
-
-@Serializable
-object Checkout
-
-@Serializable
-object GoogleMap
-
-@Serializable
-data class AddressShippingArgs(
-	val cityCoordinates : String ,
-	val addressCoordinates : String
+data class ResetPasswordArgs(
+	val userID: Int
 )
-
-@Serializable
-data class PaymentArgs(
-	val tokenPayment: String,
-	val transactionID: Int
-)
-
-@Serializable
-data class DetailTransactionArgs(
-	val id: Int
-)
-
-@Serializable
-data class RatesArgs(
-	val userID: Int,
-	val productID: Int,
-	val variant: String,
-	val size: String,
-	val category: String,
-	val image: String,
-	val nameProduct: String
-)
-
-@Serializable
-object ProfilePatient

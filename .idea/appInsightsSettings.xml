@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.ciputramitra.consultation" />
+                  <option name="mobileSdkAppId" value="1:333365009077:android:1c8e257f716bac50a2fcfc" />
+                  <option name="projectId" value="cmhb-super-app-tqsl7p" />
+                  <option name="projectNumber" value="333365009077" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

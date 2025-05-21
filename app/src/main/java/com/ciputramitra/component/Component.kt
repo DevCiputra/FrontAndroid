@@ -3,13 +3,18 @@ package com.ciputramitra.component
 import android.widget.Toast
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -34,6 +39,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -44,6 +51,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -328,5 +336,76 @@ fun formatDate(dateString: String): String {
 		return date?.let { targetFormat.format(it) } ?: dateString
 	} catch (e: Exception) {
 		return dateString
+	}
+}
+
+@Composable
+fun GenderRadioGroupStyled(
+	selectedGender: String,
+	onGenderSelected: (String) -> Unit
+) {
+	val genderOptions = listOf("Pria", "Perempuan")
+	
+	Column(
+		modifier = Modifier
+			.fillMaxWidth()
+			.padding(horizontal = 16.dp, vertical = 8.dp)
+	) {
+		Text(
+			text = "Pilih Jenis Kelamin",
+			style = MaterialTheme.typography.titleMedium,
+			modifier = Modifier.padding(bottom = 12.dp)
+		)
+		
+		Row(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(bottom = 16.dp),
+			horizontalArrangement = Arrangement.spacedBy(12.dp)
+		) {
+			genderOptions.forEach { gender ->
+				val isSelected = gender == selectedGender
+				val backgroundColor = if (isSelected)
+					MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+				else
+					MaterialTheme.colorScheme.surface
+				
+				Box(
+					modifier = Modifier
+						.weight(1f)
+						.clip(RoundedCornerShape(8.dp))
+						.background(backgroundColor)
+						.border(
+							width = 1.dp,
+							color = if (isSelected) MaterialTheme.colorScheme.primary
+							else MaterialTheme.colorScheme.outline,
+							shape = RoundedCornerShape(8.dp)
+						)
+						.clickable { onGenderSelected(gender) }
+						.padding(vertical = 12.dp),
+					contentAlignment = Alignment.Center
+				) {
+					Row(
+						verticalAlignment = Alignment.CenterVertically,
+						horizontalArrangement = Arrangement.Center
+					) {
+						RadioButton(
+							selected = isSelected,
+							onClick = null, // Click dihandle oleh parent Box
+							colors = RadioButtonDefaults.colors(
+								selectedColor = MaterialTheme.colorScheme.primary
+							)
+						)
+						Spacer(modifier = Modifier.width(8.dp))
+						Text(
+							text = gender,
+							style = MaterialTheme.typography.bodyMedium,
+							color = if (isSelected) MaterialTheme.colorScheme.primary
+							else MaterialTheme.colorScheme.onSurface
+						)
+					}
+				}
+			}
+		}
 	}
 }

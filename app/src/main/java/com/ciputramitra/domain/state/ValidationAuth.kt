@@ -7,6 +7,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 class ValidationAuth: ViewModel() {
+	
+	var userName by mutableStateOf(
+		ValidationStatement(validation = { it.isNotBlank()})
+	)
+	
 	var email by mutableStateOf(
 		ValidationStatement(validation = { Patterns.EMAIL_ADDRESS.matcher(it).matches() })
 	)
@@ -18,12 +23,6 @@ class ValidationAuth: ViewModel() {
 	var passwordNew by mutableStateOf(
 		ValidationStatement(validation = {true})
 	)
-	
-	var userName by mutableStateOf(
-		ValidationStatement(validation = { it.isNotBlank()})
-	)
-	
-	
 	
 	var whatsapp by mutableStateOf(
 		ValidationStatement(
@@ -37,7 +36,8 @@ class ValidationAuth: ViewModel() {
 		)
 	)
 	
-	var address by mutableStateOf(
+	
+	var gender by mutableStateOf(
 		ValidationStatement(validation = { it.isNotBlank()})
 	)
 	
@@ -54,7 +54,7 @@ class ValidationAuth: ViewModel() {
 		userName = userName.copy(showError = !userName.validation(userName.value))
 		
 		whatsapp = whatsapp.copy(showError = !whatsapp.validation(whatsapp.value))
-		address = address.copy(showError = !address.validation(address.value))
+		gender = gender.copy(showError = !gender.validation(gender.value))
 		
 		showCheckBoxError = !checkBoxChange
 		
