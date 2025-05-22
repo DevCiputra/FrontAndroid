@@ -8,6 +8,8 @@ object Login
 @Serializable
 object Register
 
+@Serializable
+object Biometric
 
 @Serializable
 object Home
@@ -24,3 +26,6 @@ data class VerifyOtpArgs(
 data class ResetPasswordArgs(
 	val userID: Int
 )
+
+@Serializable
+object SuccessResetRoute

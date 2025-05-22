@@ -47,6 +47,7 @@ import com.ciputramitra.consultation.ui.theme.poppinsBold
 import com.ciputramitra.consultation.ui.theme.poppinsMedium
 import com.ciputramitra.domain.state.StateManagement
 import com.ciputramitra.domain.state.ValidationAuth
+import com.ciputramitra.navgraph.Biometric
 import com.ciputramitra.navgraph.Register
 import com.ciputramitra.navgraph.VerifyEmailRoute
 

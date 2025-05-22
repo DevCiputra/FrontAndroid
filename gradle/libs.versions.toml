@@ -8,6 +8,13 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.9.0"
 activityCompose = "1.10.1"
 composeBom = "2025.05.00"
+biometricVef= "1.1.0"
+
+#AppCompat
+appcompatVer="1.7.0"
+
+#Fragment Support
+fragmentVef = "1.6.2"
 
 #Font
 font = "1.8.1"
@@ -149,6 +156,12 @@ play-services-maps = { group = "com.google.android.gms", name = "play-services-m
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
+
+biometric-promp = {group = "androidx.biometric" , name = "biometric", version.ref = "biometricVef"}
+
+fragment-ktx = {group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentVef"}
+
+appcompat-ktx = {group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVer"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

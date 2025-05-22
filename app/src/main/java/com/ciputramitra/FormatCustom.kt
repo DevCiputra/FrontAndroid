@@ -81,4 +81,7 @@ object FormatCustom {
 	const val LOCATION_INTERVAL : Long = 1000
 	const val LOCATION_FAST_INTERVAL : Long = 2000
 	const val LOCATION_MAX_WITH_TIME : Long = 12000
+	
+	
+	
 }

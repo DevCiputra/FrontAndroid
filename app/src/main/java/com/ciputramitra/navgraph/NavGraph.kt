@@ -29,7 +29,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.ciputramitra.BiometricPromptManager
 import com.ciputramitra.component.bottomNavigation
+import com.ciputramitra.consultation.BiometricScreen
 import com.ciputramitra.consultation.ui.article.ArticlesScreen
 import com.ciputramitra.consultation.ui.auth.AuthViewModel
 import com.ciputramitra.consultation.ui.auth.LoginScreen
@@ -45,7 +47,8 @@ import com.ciputramitra.consultation.ui.theme.whiteCustom
 
 @Composable
 fun NavGraph(
-	authViewModel: AuthViewModel
+	authViewModel : AuthViewModel ,
+	promptManager : BiometricPromptManager
 ) {
 	val isLoggedIn by authViewModel.isLoggedIn.collectAsStateWithLifecycle(initialValue = false)
 	val token by authViewModel.token.collectAsStateWithLifecycle()
@@ -57,13 +60,13 @@ fun NavGraph(
 	
 	NavHost(
 		navController = navController,
-		startDestination = if (isLoggedIn && token != null) Home else Login
+		startDestination = if (isLoggedIn && token != null) Biometric else Login
 	) {
 		composable<Login> {
 			LoginScreen(
 				onLoginSuccess = {
 					if (token != null)
-						navController.navigate(route = Home) {
+						navController.navigate(route = Biometric) {
 							popUpTo(route = Login) { inclusive = true }
 						}
 				},
@@ -78,6 +81,7 @@ fun NavGraph(
 					navController.navigate(route = Login) {
 						popUpTo(route = Login) { inclusive = true }
 					}
+					
 				},
 				navController = navController,
 				authViewModel = authViewModel
@@ -191,13 +195,38 @@ fun NavGraph(
 				authViewModel.clearAuthState()
 			}
 			
-			
 			val args = it.toRoute<ResetPasswordArgs>()
 			ResetPasswordScreen(
+				onResetSuccess = {
+					navController.navigate(
+						route = Login
+					)
+				},
 				userID = args.userID,
 				authViewModel = authViewModel,
 				navController = navController
 			)
 		}
+		
+		composable<Biometric> {
+			BackHandler(
+				enabled = true
+			) {
+				if (selectedItemIndex == 0)
+					(context as Activity).finish()
+				else selectedItemIndex = 0
+			}
+			
+			BiometricScreen(
+				promptManager = promptManager,
+				onAuthSuccess = {
+					navController.navigate(
+						route = Home
+					)
+				}
+			)
+			
+		}
+		
 	}
 }

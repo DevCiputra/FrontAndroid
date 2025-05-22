@@ -144,4 +144,13 @@ dependencies {
 	ksp(libs.room.runtime.compiler)
 	implementation(libs.room.ktx)
 	
+//	Biometric
+	implementation(libs.biometric.promp)
+	
+//	Fragment Ktx
+	implementation(libs.fragment.ktx)
+	
+//	AppCompat
+	implementation(libs.appcompat.ktx)
+	
 }

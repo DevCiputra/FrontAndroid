@@ -14,7 +14,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowCircleLeft
 import androidx.compose.material.icons.filled.Fingerprint
-import androidx.compose.material.icons.filled.Password
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -54,6 +53,7 @@ fun ResetPasswordScreen(
 	authViewModel : AuthViewModel ,
 	navController : NavHostController ,
 	userID : Int ,
+	onResetSuccess : () -> Unit
 ) {
 	
 	val validationPassword: ValidationPassword = viewModel()
@@ -62,6 +62,8 @@ fun ResetPasswordScreen(
 	
 	// State untuk mengecek apakah password dan konfirmasi password cocok
 	val passwordsMatch = validationPassword.password.value == validationPassword.passwordConfirmation.value
+	
+	
 	
 	Box(
 		modifier = Modifier
@@ -168,7 +170,6 @@ fun ResetPasswordScreen(
 						text = "Password Confirmation anda"
 					)
 				},
-				// Menampilkan error jika field tidak kosong dan password tidak cocok
 				error = validationPassword.passwordConfirmation.showError ||
 						(validationPassword.passwordConfirmation.value.isNotEmpty() && !passwordsMatch),
 				leadingIcon = Icons.Default.Fingerprint,
@@ -181,7 +182,7 @@ fun ResetPasswordScreen(
 				singleLine = true
 			)
 			
-			// Tambahkan pesan error jika password tidak cocok
+			
 			if (validationPassword.passwordConfirmation.value.isNotEmpty() && !passwordsMatch) {
 				Text(
 					text = "Password konfirmasi tidak cocok dengan password baru",
@@ -200,6 +201,9 @@ fun ResetPasswordScreen(
 						authViewModel.resetPassword(
 							id = userID,
 							password = validationPassword.password.value
+						)
+						navController.navigate(
+							route = Login
 						)
 					} else if (!passwordsMatch) {
 						// Tampilkan toast jika password tidak cocok
@@ -226,13 +230,9 @@ fun ResetPasswordScreen(
 			is StateManagement.Error -> Toast.makeText(context , state.message , Toast.LENGTH_SHORT).show()
 			is StateManagement.ResetPasswordSuccess ->  {
 				Toast.makeText(context , state.message , Toast.LENGTH_SHORT).show()
-				navController.navigate(
-					route = Login
-				)
 			}
 			else -> authViewModel.clearAuthState()
 		}
-		
 	}
 
 }
