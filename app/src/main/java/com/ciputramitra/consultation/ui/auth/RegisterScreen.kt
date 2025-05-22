@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.LocationCity
 import androidx.compose.material.icons.filled.VerifiedUser
 import androidx.compose.material.icons.filled.Whatsapp
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -48,8 +49,10 @@ import com.ciputramitra.component.FormCheckBox
 import com.ciputramitra.component.FormTextField
 import com.ciputramitra.component.GenderRadioGroupStyled
 import com.ciputramitra.component.LoadingLottieAnimation
+import com.ciputramitra.consultation.ui.theme.greenColor
 import com.ciputramitra.consultation.ui.theme.poppinsBold
 import com.ciputramitra.consultation.ui.theme.poppinsMedium
+import com.ciputramitra.consultation.ui.theme.whiteCustom
 import com.ciputramitra.domain.state.StateManagement
 import com.ciputramitra.domain.state.ValidationAuth
 import com.google.firebase.messaging.FirebaseMessaging
@@ -256,7 +259,11 @@ fun RegisterScreen(
 								)
 							else Toast.makeText(context , "Field ada yang kosong" , Toast.LENGTH_SHORT).show()
 						}
-					}
+					},
+					colors = ButtonDefaults.buttonColors(
+						containerColor = greenColor,
+						contentColor = whiteCustom
+					)
 				) {
 					Text(
 						modifier = Modifier.padding(8.dp),

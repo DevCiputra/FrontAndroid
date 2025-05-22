@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.VerifiedUser
 import androidx.compose.material.icons.rounded.ArrowCircleLeft
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -68,8 +69,8 @@ fun VerifyPasswordScreen(
 	val verifyEmailState by authViewModel.authState.collectAsStateWithLifecycle()
 	val context = LocalContext.current
 	
-	
-	
+	// State untuk mengetahui apakah sedang loading
+	val isLoading = verifyEmailState is StateManagement.Loading
 	
 	LazyColumn(
 		modifier = Modifier
@@ -156,6 +157,7 @@ fun VerifyPasswordScreen(
 				leadingIcon = Icons.Default.MarkEmailUnread,
 				keyboardType = KeyboardType.Email,
 				singleLine = true,
+				enable = !isLoading, // Disable textfield saat loading
 				suffix = {
 					Text(
 						text = ".com",
@@ -172,8 +174,6 @@ fun VerifyPasswordScreen(
 							email = validationEmailVerify.email.value
 						)
 					}
-					
-					
 				},
 				modifier = Modifier
 					.fillMaxWidth()
@@ -181,53 +181,81 @@ fun VerifyPasswordScreen(
 					.padding(horizontal = 16.dp , vertical = 8.dp)
 					.shadow(elevation = 4.dp , shape = RoundedCornerShape(28.dp)),
 				colors = ButtonDefaults.buttonColors(
-					containerColor = greenColor, // Tu color verde definido
+					containerColor = if (isLoading) Color.Gray else greenColor,
 					contentColor = Color.White
 				),
-				shape = RoundedCornerShape(28.dp)
+				shape = RoundedCornerShape(28.dp),
+				enabled = !isLoading // Disable button saat loading
 			) {
 				Row  (
 					verticalAlignment = Alignment.CenterVertically,
 					horizontalArrangement = Arrangement.Center
 				) {
-					Icon(
-						imageVector = Icons.Default.VerifiedUser,
-						contentDescription = null,
-						modifier = Modifier.size(20.dp)
-					)
-					Spacer(modifier = Modifier.width(8.dp))
-					Text(
-						text = "Kirim OTP Sekarang",
-						fontFamily = poppinsMedium,
-						fontSize = 16.sp,
-						fontWeight = FontWeight.SemiBold
-					)
+					if (isLoading) {
+						// Tampilkan loading indicator
+						CircularProgressIndicator(
+							modifier = Modifier.size(20.dp),
+							color = Color.White,
+							strokeWidth = 2.dp
+						)
+						Spacer(modifier = Modifier.width(8.dp))
+						Text(
+							text = "Mengirim OTP...",
+							fontFamily = poppinsMedium,
+							fontSize = 16.sp,
+							fontWeight = FontWeight.SemiBold
+						)
+					} else {
+						Icon(
+							imageVector = Icons.Default.VerifiedUser,
+							contentDescription = null,
+							modifier = Modifier.size(20.dp)
+						)
+						Spacer(modifier = Modifier.width(8.dp))
+						Text(
+							text = "Kirim OTP Sekarang",
+							fontFamily = poppinsMedium,
+							fontSize = 16.sp,
+							fontWeight = FontWeight.SemiBold
+						)
+					}
 				}
 			}
 		}
 		
 		item {
 			when(val state = verifyEmailState) {
-				is StateManagement.Loading -> LoadingLottieAnimation()
-				is StateManagement.Error -> Toast.makeText(context , state.message , Toast.LENGTH_SHORT).show()
-				is StateManagement.VerifyEmailSuccess -> {
-					Toast.makeText(
-						context ,
-						"Kode OTP telah dikirim ke email Anda",
-						Toast.LENGTH_SHORT
-					).show()
-					
-					navController.navigate(
-						route = VerifyOtpArgs(
-							email = validationEmailVerify.email.value
-						)
-					)
+				is StateManagement.Loading -> {
+					// Tampilkan loading animation di bawah button
+					LoadingLottieAnimation()
 				}
-				else -> authViewModel.clearAuthState()
+				is StateManagement.Error -> {
+					LaunchedEffect(state.message) {
+						Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+					}
+				}
+				is StateManagement.VerifyEmailSuccess -> {
+					LaunchedEffect(state) {
+						Toast.makeText(
+							context,
+							"Kode OTP telah dikirim ke email Anda",
+							Toast.LENGTH_SHORT
+						).show()
+						
+						navController.navigate(
+							route = VerifyOtpArgs(
+								email = validationEmailVerify.email.value
+							)
+						)
+					}
+				}
+				else -> {
+					// Clear state hanya jika bukan loading
+					if (!isLoading) {
+						authViewModel.clearAuthState()
+					}
+				}
 			}
 		}
 	}
-	
-	
-	
 }

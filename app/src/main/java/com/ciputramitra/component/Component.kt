@@ -64,8 +64,12 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.ciputramitra.consultation.R
+import com.ciputramitra.consultation.ui.theme.black
 import com.ciputramitra.consultation.ui.theme.greenColor
+import com.ciputramitra.consultation.ui.theme.lightGray
+import com.ciputramitra.consultation.ui.theme.smoothColor
 import com.ciputramitra.consultation.ui.theme.textColor
+import com.ciputramitra.consultation.ui.theme.whiteCustom
 import com.ciputramitra.data.BottomNavigationItems
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -143,7 +147,7 @@ fun FormCheckBox(
 	checked : Boolean,
 	onCheckedChange : (Boolean) -> Unit,
 	error: Boolean,
-	label: String
+	label: String,
 ) {
 	val context = LocalContext.current
 	Row(
@@ -152,11 +156,12 @@ fun FormCheckBox(
 		verticalAlignment = Alignment.CenterVertically,
 	) {
 		Checkbox(
+			colors = CheckboxDefaults.colors(
+				checkedColor = greenColor,
+				uncheckedColor = Color.Gray
+			),
 			checked = checked,
 			onCheckedChange = onCheckedChange,
-			colors = CheckboxDefaults.colors(
-				uncheckedColor = Color.Gray
-			)
 		)
 		Text(
 			text = label
@@ -366,7 +371,7 @@ fun GenderRadioGroupStyled(
 			genderOptions.forEach { gender ->
 				val isSelected = gender == selectedGender
 				val backgroundColor = if (isSelected)
-					MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+					whiteCustom
 				else
 					MaterialTheme.colorScheme.surface
 				
@@ -377,7 +382,7 @@ fun GenderRadioGroupStyled(
 						.background(backgroundColor)
 						.border(
 							width = 1.dp,
-							color = if (isSelected) MaterialTheme.colorScheme.primary
+							color = if (isSelected) whiteCustom
 							else MaterialTheme.colorScheme.outline,
 							shape = RoundedCornerShape(8.dp)
 						)
@@ -393,14 +398,14 @@ fun GenderRadioGroupStyled(
 							selected = isSelected,
 							onClick = null, // Click dihandle oleh parent Box
 							colors = RadioButtonDefaults.colors(
-								selectedColor = MaterialTheme.colorScheme.primary
+								selectedColor = greenColor
 							)
 						)
 						Spacer(modifier = Modifier.width(8.dp))
 						Text(
 							text = gender,
 							style = MaterialTheme.typography.bodyMedium,
-							color = if (isSelected) MaterialTheme.colorScheme.primary
+							color = if (isSelected) greenColor
 							else MaterialTheme.colorScheme.onSurface
 						)
 					}

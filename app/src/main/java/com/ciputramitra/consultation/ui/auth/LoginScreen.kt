@@ -17,6 +17,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
@@ -45,6 +47,7 @@ import com.ciputramitra.component.LoadingLottieAnimation
 import com.ciputramitra.consultation.ui.theme.greenColor
 import com.ciputramitra.consultation.ui.theme.poppinsBold
 import com.ciputramitra.consultation.ui.theme.poppinsMedium
+import com.ciputramitra.consultation.ui.theme.whiteCustom
 import com.ciputramitra.domain.state.StateManagement
 import com.ciputramitra.domain.state.ValidationAuth
 import com.ciputramitra.navgraph.Biometric
@@ -187,7 +190,11 @@ fun LoginScreen(
 								password = validationAuth.password.value,
 							)
 						}
-					}
+					},
+					colors = ButtonDefaults.buttonColors(
+						containerColor = greenColor,
+						contentColor = whiteCustom
+					)
 				) {
 					Text(
 						modifier = Modifier.padding(8.dp),
