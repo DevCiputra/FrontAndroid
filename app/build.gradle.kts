@@ -36,6 +36,8 @@ android {
 		create("dev") {
 			applicationId = "com.ciputramitra.consultation"
 			buildConfigField(type = "String", name = "BASE_URL", value = "\"${properties.getProperty("BASE_URL")}\"")
+			buildConfigField(type = "Long", name = "APP_ID", value = "\"${properties.getProperty("APP_ID")}\"")
+			buildConfigField(type = "String", name = "APP_SIGN", value = "\"${properties.getProperty("APP_SIGN")}\"")
 		}
 	}
 	
@@ -74,6 +76,9 @@ dependencies {
 	implementation(libs.androidx.ui.tooling.preview)
 	implementation(libs.androidx.material3)
 	implementation(libs.firebase.messaging)
+	implementation(libs.material)
+	implementation(libs.androidx.activity)
+	implementation(libs.androidx.constraintlayout)
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
@@ -152,5 +157,7 @@ dependencies {
 	
 //	AppCompat
 	implementation(libs.appcompat.ktx)
+	
+	implementation("com.github.ZEGOCLOUD:zego_uikit_prebuilt_call_android:+")
 	
 }

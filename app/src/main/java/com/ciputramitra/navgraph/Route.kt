@@ -8,8 +8,6 @@ object Login
 @Serializable
 object Register
 
-@Serializable
-object Biometric
 
 @Serializable
 object Home
@@ -28,4 +26,9 @@ data class ResetPasswordArgs(
 )
 
 @Serializable
-object SuccessResetRoute
+object Polyclinic
+
+@Serializable
+data class DoctorAllArgs(
+	val polyclinicID: Int
+)

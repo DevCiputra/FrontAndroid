@@ -17,7 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -50,7 +49,6 @@ import com.ciputramitra.consultation.ui.theme.poppinsMedium
 import com.ciputramitra.consultation.ui.theme.whiteCustom
 import com.ciputramitra.domain.state.StateManagement
 import com.ciputramitra.domain.state.ValidationAuth
-import com.ciputramitra.navgraph.Biometric
 import com.ciputramitra.navgraph.Register
 import com.ciputramitra.navgraph.VerifyEmailRoute
 
@@ -254,6 +252,7 @@ fun LoginScreen(
 				is StateManagement.Loading -> LoadingLottieAnimation()
 				is StateManagement.Error ->  {
 					Toast.makeText(context , state.message , Toast.LENGTH_SHORT).show()
+					authViewModel.clearAuthState()
 				}
 				
 				is StateManagement.LoginSuccess -> LaunchedEffect(key1 = state) {

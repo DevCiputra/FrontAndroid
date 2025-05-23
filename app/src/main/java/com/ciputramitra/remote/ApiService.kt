@@ -3,12 +3,15 @@ package com.ciputramitra.remote
 import com.ciputramitra.response.Wrapper
 import com.ciputramitra.response.auth.AuthResponse
 import com.ciputramitra.response.otprequest.OtpRequestResponse
+import com.ciputramitra.response.polyclinic.PolyclinicResponse
 import com.ciputramitra.response.resetpassword.ResetPasswordResponse
 import com.ciputramitra.response.verifyemail.VerifyEmailResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
 	@FormUrlEncoded
@@ -51,4 +54,10 @@ interface ApiService {
 		@Path(value = "id") id: Int,
 		@Field("password") password: String,
 	): Wrapper<ResetPasswordResponse>
+	
+	
+	@GET("doctor_polyclinic")
+	suspend fun fetchPolyclinic(
+		@Query("page") page: Int
+	): Wrapper<PolyclinicResponse>
 }

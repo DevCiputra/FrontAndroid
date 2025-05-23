@@ -29,9 +29,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.ciputramitra.BiometricPromptManager
 import com.ciputramitra.component.bottomNavigation
-import com.ciputramitra.consultation.BiometricScreen
 import com.ciputramitra.consultation.ui.article.ArticlesScreen
 import com.ciputramitra.consultation.ui.auth.AuthViewModel
 import com.ciputramitra.consultation.ui.auth.LoginScreen
@@ -39,8 +37,11 @@ import com.ciputramitra.consultation.ui.auth.RegisterScreen
 import com.ciputramitra.consultation.ui.auth.RequestOtpScreen
 import com.ciputramitra.consultation.ui.auth.ResetPasswordScreen
 import com.ciputramitra.consultation.ui.auth.VerifyPasswordScreen
+import com.ciputramitra.consultation.ui.doctor.DoctorAllScreen
 import com.ciputramitra.consultation.ui.history.HistoryScreen
 import com.ciputramitra.consultation.ui.home.HomeScreen
+import com.ciputramitra.consultation.ui.polyclinic.PolyclinicScreen
+import com.ciputramitra.consultation.ui.polyclinic.PolyclinicViewModel
 import com.ciputramitra.consultation.ui.profile.ProfileScreen
 import com.ciputramitra.consultation.ui.theme.poppinsMedium
 import com.ciputramitra.consultation.ui.theme.whiteCustom
@@ -48,7 +49,7 @@ import com.ciputramitra.consultation.ui.theme.whiteCustom
 @Composable
 fun NavGraph(
 	authViewModel : AuthViewModel ,
-	promptManager : BiometricPromptManager
+	polyclinicViewModel : PolyclinicViewModel ,
 ) {
 	val isLoggedIn by authViewModel.isLoggedIn.collectAsStateWithLifecycle(initialValue = false)
 	val token by authViewModel.token.collectAsStateWithLifecycle()
@@ -60,13 +61,13 @@ fun NavGraph(
 	
 	NavHost(
 		navController = navController,
-		startDestination = if (isLoggedIn && token != null) Biometric else Login
+		startDestination = if (isLoggedIn && token != null) Home else Login
 	) {
 		composable<Login> {
 			LoginScreen(
 				onLoginSuccess = {
 					if (token != null)
-						navController.navigate(route = Biometric) {
+						navController.navigate(route = Home) {
 							popUpTo(route = Login) { inclusive = true }
 						}
 				},
@@ -208,25 +209,51 @@ fun NavGraph(
 			)
 		}
 		
-		composable<Biometric> {
-			BackHandler(
-				enabled = true
-			) {
-				if (selectedItemIndex == 0)
-					(context as Activity).finish()
-				else selectedItemIndex = 0
+		
+		composable<Polyclinic> {
+			BackHandler {
+				navController.navigateUp()
 			}
 			
-			BiometricScreen(
-				promptManager = promptManager,
-				onAuthSuccess = {
-					navController.navigate(
-						route = Home
-					)
-				}
+			PolyclinicScreen(
+				navController = navController,
+				polyclinicViewModel = polyclinicViewModel
 			)
-			
 		}
+		
+		composable<DoctorAllArgs> {
+			BackHandler {
+				navController.navigateUp()
+			}
+			
+			val args = it.toRoute<DoctorAllArgs>()
+			DoctorAllScreen(
+				polyclinicID = args.polyclinicID
+			)
+		}
+		
+		
+//		composable<Biometric> {
+//			BackHandler(
+//				enabled = true
+//			) {
+//				if (selectedItemIndex == 0)
+//					(context as Activity).finish()
+//				else selectedItemIndex = 0
+//			}
+//
+//			BiometricScreen(
+//				onAuthSuccess = {
+//					navController.navigate(
+//						route = Home
+//					)
+//				}
+//			)
+//
+//		}
+	
+		
+		
 		
 	}
 }

@@ -83,5 +83,4 @@ object FormatCustom {
 	const val LOCATION_MAX_WITH_TIME : Long = 12000
 	
 	
-	
 }
