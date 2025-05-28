@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "744752774394",
-    "project_id": "consultation-f6653",
-    "storage_bucket": "consultation-f6653.firebasestorage.app"
+    "project_number": "813487482663",
+    "project_id": "consultation-d64f1",
+    "storage_bucket": "consultation-d64f1.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:744752774394:android:c9fa218e5b166d7b129d43",
+        "mobilesdk_app_id": "1:813487482663:android:97afd231b33b108b052b02",
         "android_client_info": {
           "package_name": "com.ciputramitra.consultation"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAkocFo1lgVU8qOjQPZape_g71gT04UyTU"
+          "current_key": "AIzaSyDD2Qdf7lEc2CL3JIK8vsFKao_UX6-JEwI"
         }
       ],
       "services": {

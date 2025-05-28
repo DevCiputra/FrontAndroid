@@ -1,6 +1,7 @@
 package com.ciputramitra.domain.state
 
 import com.ciputramitra.response.auth.AuthResponse
+import com.ciputramitra.response.doctor.DoctorResponse
 import com.ciputramitra.response.otprequest.OtpRequestResponse
 import com.ciputramitra.response.polyclinic.PolyclinicResponse
 import com.ciputramitra.response.resetpassword.ResetPasswordResponse
@@ -24,4 +25,8 @@ sealed class StateManagement {
 		val polyclinicResponse : PolyclinicResponse
 	): StateManagement()
 	
+	
+	data class DoctorSuccess(
+		val doctorResponse : DoctorResponse
+	): StateManagement()
 }

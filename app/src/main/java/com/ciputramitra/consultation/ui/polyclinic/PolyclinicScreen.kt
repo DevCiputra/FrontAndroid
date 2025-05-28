@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -139,6 +140,7 @@ fun PolyclinicScreen(
 		}
 		
 		item {
+			Spacer(modifier = Modifier.padding(bottom = 14.dp))
 			PolyclinicItem(
 				categoryPolyclinic = fetchPolyclinic,
 				navController = navController
@@ -190,7 +192,8 @@ fun PolyclinicItem(categoryPolyclinic : LazyPagingItems<Data> , navController : 
 						.clickable {
 							navController.navigate(
 								route = DoctorAllArgs(
-									polyclinicID = categoryPolyclinics.id
+									polyclinicID = categoryPolyclinics.id,
+									namePolyclinic = categoryPolyclinics.name
 								)
 							)
 						},

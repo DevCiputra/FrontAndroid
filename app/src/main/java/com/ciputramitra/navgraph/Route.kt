@@ -30,5 +30,6 @@ object Polyclinic
 
 @Serializable
 data class DoctorAllArgs(
-	val polyclinicID: Int
+	val polyclinicID: Int,
+	val namePolyclinic: String
 )

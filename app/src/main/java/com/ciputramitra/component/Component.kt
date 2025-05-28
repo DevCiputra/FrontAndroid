@@ -49,15 +49,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -67,6 +72,7 @@ import com.ciputramitra.consultation.R
 import com.ciputramitra.consultation.ui.theme.black
 import com.ciputramitra.consultation.ui.theme.greenColor
 import com.ciputramitra.consultation.ui.theme.lightGray
+import com.ciputramitra.consultation.ui.theme.poppinsLight
 import com.ciputramitra.consultation.ui.theme.smoothColor
 import com.ciputramitra.consultation.ui.theme.textColor
 import com.ciputramitra.consultation.ui.theme.whiteCustom
@@ -412,5 +418,41 @@ fun GenderRadioGroupStyled(
 				}
 			}
 		}
+	}
+}
+
+@Composable
+fun EmptyStateView(
+	message: String
+) {
+	Column(
+		modifier = Modifier
+			.fillMaxWidth()
+			.padding(vertical = 32.dp),
+		horizontalAlignment = Alignment.CenterHorizontally,
+		verticalArrangement = Arrangement.Center
+	) {
+		AsyncImage(
+			model = ImageRequest.Builder(LocalContext.current)
+				.data(R.drawable.empty)
+				.crossfade(true)  // Efek fade saat loading
+				.build(),
+			contentDescription = "Gambar dari URL",
+			modifier = Modifier
+				.size(120.dp)
+				.clip(RoundedCornerShape(8.dp)),
+			contentScale = ContentScale.Crop
+		)
+		
+		Text(
+			modifier = Modifier
+				.padding(horizontal = 16.dp),
+			text = message,
+			fontFamily = poppinsLight,
+			fontSize = 14.sp,
+			color = black,
+			fontWeight = FontWeight.Medium,
+			textAlign = TextAlign.Center
+		)
 	}
 }

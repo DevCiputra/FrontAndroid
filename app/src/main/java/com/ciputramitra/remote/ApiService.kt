@@ -2,6 +2,7 @@ package com.ciputramitra.remote
 
 import com.ciputramitra.response.Wrapper
 import com.ciputramitra.response.auth.AuthResponse
+import com.ciputramitra.response.doctor.DoctorResponse
 import com.ciputramitra.response.otprequest.OtpRequestResponse
 import com.ciputramitra.response.polyclinic.PolyclinicResponse
 import com.ciputramitra.response.resetpassword.ResetPasswordResponse
@@ -60,4 +61,13 @@ interface ApiService {
 	suspend fun fetchPolyclinic(
 		@Query("page") page: Int
 	): Wrapper<PolyclinicResponse>
+	
+	@GET("doctors")
+	suspend fun fetchDoctor(
+		@Query("page") page: Int,
+		@Query("doctor_polyclinic_id") doctorPolyclinicID: Int,
+		@Query("name") name: String,
+		@Query("is_published") isPublished: Int,
+		@Query("schedule") schedule: String
+	): Wrapper<DoctorResponse>
 }

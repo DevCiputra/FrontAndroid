@@ -38,6 +38,7 @@ import com.ciputramitra.consultation.ui.auth.RequestOtpScreen
 import com.ciputramitra.consultation.ui.auth.ResetPasswordScreen
 import com.ciputramitra.consultation.ui.auth.VerifyPasswordScreen
 import com.ciputramitra.consultation.ui.doctor.DoctorAllScreen
+import com.ciputramitra.consultation.ui.doctor.DoctorViewModel
 import com.ciputramitra.consultation.ui.history.HistoryScreen
 import com.ciputramitra.consultation.ui.home.HomeScreen
 import com.ciputramitra.consultation.ui.polyclinic.PolyclinicScreen
@@ -50,6 +51,7 @@ import com.ciputramitra.consultation.ui.theme.whiteCustom
 fun NavGraph(
 	authViewModel : AuthViewModel ,
 	polyclinicViewModel : PolyclinicViewModel ,
+	doctorViewModel : DoctorViewModel ,
 ) {
 	val isLoggedIn by authViewModel.isLoggedIn.collectAsStateWithLifecycle(initialValue = false)
 	val token by authViewModel.token.collectAsStateWithLifecycle()
@@ -228,31 +230,12 @@ fun NavGraph(
 			
 			val args = it.toRoute<DoctorAllArgs>()
 			DoctorAllScreen(
-				polyclinicID = args.polyclinicID
+				polyclinicID = args.polyclinicID,
+				namePolyclinic = args.namePolyclinic,
+				doctorViewModel = doctorViewModel,
+				navController = navController
 			)
 		}
-		
-		
-//		composable<Biometric> {
-//			BackHandler(
-//				enabled = true
-//			) {
-//				if (selectedItemIndex == 0)
-//					(context as Activity).finish()
-//				else selectedItemIndex = 0
-//			}
-//
-//			BiometricScreen(
-//				onAuthSuccess = {
-//					navController.navigate(
-//						route = Home
-//					)
-//				}
-//			)
-//
-//		}
-	
-		
 		
 		
 	}

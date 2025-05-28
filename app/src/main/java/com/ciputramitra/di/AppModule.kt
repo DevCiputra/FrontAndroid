@@ -2,12 +2,16 @@ package com.ciputramitra.di
 
 import com.ciputramitra.cache.DataStoreManager
 import com.ciputramitra.consultation.ui.auth.AuthViewModel
+import com.ciputramitra.consultation.ui.doctor.DoctorViewModel
 import com.ciputramitra.consultation.ui.polyclinic.PolyclinicViewModel
 import com.ciputramitra.domain.repository.AuthRepository
 import com.ciputramitra.domain.repository.AuthRepositoryImpl
+import com.ciputramitra.domain.repository.doctor.DoctorRepository
+import com.ciputramitra.domain.repository.doctor.DoctorRepositoryImpl
 import com.ciputramitra.domain.repository.polyclinic.PolyclinicRepository
 import com.ciputramitra.domain.repository.polyclinic.PolyclinicRepositoryImpl
 import com.ciputramitra.domain.usecase.AuthUseCase
+import com.ciputramitra.domain.usecase.DoctorUseCase
 import com.ciputramitra.domain.usecase.PolyclinicUseCase
 import com.ciputramitra.remote.HttpClient
 import org.koin.android.ext.koin.androidContext
@@ -28,4 +32,10 @@ val AppModule = module {
 	single<PolyclinicRepository> { PolyclinicRepositoryImpl(get() ) }
 	factory { PolyclinicUseCase(get()) }
 	viewModel { PolyclinicViewModel(get()) }
+	
+	
+	//	Doctor
+	single<DoctorRepository> { DoctorRepositoryImpl(get()) }
+	factory { DoctorUseCase(get()) }
+	viewModel { DoctorViewModel(get()) }
 }
